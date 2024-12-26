@@ -72,6 +72,25 @@ in
 
       web-devicons.enable = true;
       guess-indent.enable = true;
+
+      chatgpt = {
+        enable = true;
+
+        settings = {
+          api_key_cmd = "cat ~/my-nix/secrets/openai.txt";
+          openai_params = {
+            model = "gpt-4-1106-preview";
+            max_tokens = 4095;
+          };
+          openai_edit_params = {
+            model = "code-davinci-edit-001";
+          };
+          keymaps = {
+            close = [ "<C-c>" ];
+            submit = "<C-s>";
+          };
+        };
+      };
     };
 
 
