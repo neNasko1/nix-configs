@@ -1,6 +1,6 @@
 { lib, config, pkgs, inputs, ... }:
 
-let 
+let
   vi_action = action: "<CMD>${action}<CR>";
   lua_action = action: "<CMD>lua ${action}<CR>";
   default_km_opts = {
@@ -70,27 +70,20 @@ in
         enable = true;
       };
 
-      web-devicons.enable = true;
-      guess-indent.enable = true;
-
-      chatgpt = {
+      conform-nvim = {
         enable = true;
-
         settings = {
-          api_key_cmd = "cat ~/my-nix/secrets/openai.txt";
-          openai_params = {
-            model = "gpt-4-1106-preview";
-            max_tokens = 4095;
+          format_on_save = {
+            timeout_ms = 500;
           };
-          openai_edit_params = {
-            model = "code-davinci-edit-001";
-          };
-          keymaps = {
-            close = [ "<C-c>" ];
-            submit = "<C-s>";
+          formatters_by_ft = {
+            "*" = [ "trim_whitespace" ];
           };
         };
       };
+
+      web-devicons.enable = true;
+      guess-indent.enable = true;
     };
 
 
@@ -132,5 +125,5 @@ in
       langmap = "чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM";
       foldlevel = 99;
     };
-  }; 
+  };
 }

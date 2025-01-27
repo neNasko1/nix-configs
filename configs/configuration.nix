@@ -76,12 +76,16 @@
   environment.systemPackages = with pkgs; [
     gcc
     cmake
+    gnumake
     telegram-desktop
     wpa_supplicant
-    python3
     just
     chromium
     unzip
+    # python3
+    # practical
+    tcl
+    bash
   ];
 
   virtualisation.docker.enable = true;
