@@ -18,8 +18,8 @@ let custom = {
   opacity = "1";
   indicator_height = "2px";
 };
-in 
-  {
+in
+{
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
@@ -124,7 +124,7 @@ in
         "clock"
       ];
       modules-right= [
-        "pulseaudio" 
+        "pulseaudio"
         "network"
         "battery"
         "custom/notification"
@@ -195,5 +195,4 @@ in
       };
     };
   };
-
 }

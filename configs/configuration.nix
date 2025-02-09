@@ -34,6 +34,14 @@
     pulse.enable = true;
   };
 
+  services.postgresql = {
+    enable = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
+
   time.timeZone = "Europe/Sofia";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -56,6 +64,13 @@
   };
 
   programs.zsh.enable = true;
+  programs.wireshark.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    glfw
+    libGL
+  ];
 
   systemd.user.services.start-hyprland = {
     description = "Start hyprland after logging in tty";
@@ -81,11 +96,15 @@
     wpa_supplicant
     just
     chromium
+    zip
     unzip
-    # python3
-    # practical
     tcl
     bash
+    typst
+    zathura
+    sbcl
+    wireshark
+    light
   ];
 
   virtualisation.docker.enable = true;

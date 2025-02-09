@@ -17,7 +17,8 @@ in
       exec-once = ''${startupScript}/bin/start'';
 
       input = {
-        "kb_options" = "caps:swapescape";
+        "kb_options" = "caps:swapescape,grp:win_space_toggle";
+        "kb_layout" = "us,bg(phonetic)";
         "repeat_delay" = 250;
         "repeat_rate" = 50;
       };
