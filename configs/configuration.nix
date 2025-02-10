@@ -105,6 +105,9 @@
     sbcl
     wireshark
     light
+    gparted
+    wine
+    woeusb
   ];
 
   virtualisation.docker.enable = true;
