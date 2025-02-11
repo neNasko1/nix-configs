@@ -3,6 +3,7 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
@@ -107,7 +108,7 @@
     light
     gparted
     wine
-    woeusb
+    ventoy
   ];
 
   virtualisation.docker.enable = true;
