@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
@@ -64,15 +64,6 @@
     xwayland.enable = true;
   };
 
-  programs.zsh.enable = true;
-  programs.wireshark.enable = true;
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    glfw
-    libGL
-  ];
-
   systemd.user.services.start-hyprland = {
     description = "Start hyprland after logging in tty";
     serviceConfig.PassEnvironment = "DISPLAY";
@@ -81,6 +72,15 @@
     '';
     wantedBy = [ "multi-user.target" ];
   };
+
+  programs.zsh.enable = true;
+  programs.wireshark.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    glfw
+    libGL
+  ];
 
   users.users.atanasd = {
     isNormalUser = true;
