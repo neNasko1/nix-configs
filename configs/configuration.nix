@@ -22,8 +22,9 @@
   };
 
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
   # hardware.bluetooth.settings = { General = { ControllerMode = "bredr"; }; };
-
   services.printing.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -57,21 +58,45 @@
     LC_TIME = "bg_BG.UTF-8";
   };
 
-  programs.hyprland = {
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  #   portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
+  #   xwayland.enable = true;
+  # };
+
+  # systemd.user.services.start-hyprland = {
+  #   description = "Start hyprland after logging in tty";
+  #   serviceConfig.PassEnvironment = "DISPLAY";
+  #   script = ''
+  #     hyprland
+  #   '';
+  #   wantedBy = [ "multi-user.target" ];
+  # };
+
+  services.xserver = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
-  systemd.user.services.start-hyprland = {
-    description = "Start hyprland after logging in tty";
-    serviceConfig.PassEnvironment = "DISPLAY";
-    script = ''
-      hyprland
-    '';
-    wantedBy = [ "multi-user.target" ];
-  };
+  environment.gnome.excludePackages = (with pkgs; [
+    atomix # puzzle game
+    cheese # webcam tool
+    epiphany # web browser
+    evince # document viewer
+    geary # email reader
+    gedit # text editor
+    gnome-characters
+    gnome-music
+    gnome-photos
+    gnome-terminal
+    gnome-tour
+    hitori # sudoku game
+    iagno # go game
+    tali # poker game
+    totem # video player
+  ]);
 
   programs.zsh.enable = true;
   programs.wireshark.enable = true;
@@ -109,6 +134,7 @@
     gparted
     wine
     ventoy
+    ghostty
   ];
 
   virtualisation.docker.enable = true;

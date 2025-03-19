@@ -7,11 +7,14 @@
     ./modules/git.nix
     ./modules/neovim.nix
     ./modules/zsh.nix
+    ./modules/dconf.nix
   ];
 
   home.username = "atanasd";
   home.homeDirectory = "/home/atanasd";
   home.packages = with pkgs; [
+    dconf
+
     alacritty
     fish
 
@@ -35,12 +38,12 @@
     git
     ripgrep
 
-    (nerdfonts.override { 
-      fonts = [ 
+    (nerdfonts.override {
+      fonts = [
         "FiraCode"
-        "DroidSansMono" 
+        "DroidSansMono"
         "JetBrainsMono"
-      ]; 
+      ];
     })
 
     (buildFHSUserEnv {
@@ -65,9 +68,9 @@
   programs.home-manager.enable = true;
 
   home = {
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
-    }; 
+    };
   };
 }
