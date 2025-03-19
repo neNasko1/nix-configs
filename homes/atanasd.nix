@@ -63,6 +63,8 @@
     ocamlPackages.odoc
     ocamlPackages.ocaml-lsp
     ocamlformat
+
+    inputs.ghostty.packages."${pkgs.system}".default
   ];
 
   programs.home-manager.enable = true;

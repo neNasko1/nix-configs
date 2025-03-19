@@ -13,7 +13,7 @@
     };
     "org/gnome/desktop/peripherals/keyboard" = {
       repeat-interval = "uint32 30";
-      repeat-delay = "uint32 250";
+      delay = "uint32 220";
     };
     "org/gnome/desktop/input-sources" = {
       xkb-options = [
@@ -23,6 +23,35 @@
         (lib.hm.gvariant.mkTuple ["xkb" "us"])
         (lib.hm.gvariant.mkTuple ["xkb" "bg+phonetic"])
       ];
+    };
+    "org/gnome/Console" = {
+      font-scale = 1.1;
+      use-system-font = false;
+      custom-font = "DroidSansM Nerd Font 10";
+      visual-bell = false;
+      audible-bell = false;
+    };
+    "org/gnome/desktop/notifications" = {
+      show-banners = false;
+    };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>Return";
+      command = "ghostty";
+      name = "Open terminal";
+    };
+    "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
+      power-saver-profile-on-low-battery = false;
+      sleep-inactive-battery-type = "nothing";
+      sleep-inactive-ac-type = "nothing";
+    };
+    "org/gnome/shell" = {
+      last-selected-power-profile = "performance";
     };
   };
 }

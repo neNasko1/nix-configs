@@ -15,21 +15,23 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ghostty = { url = "github:ghostty-org/ghostty"; };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ghostty, ... }@inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-      	./configs
+        ./configs
         inputs.home-manager.nixosModules.default
-	{
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.backupFileExtension = "backup";
-	  home-manager.extraSpecialArgs = { inherit inputs; };
-	  home-manager.users.atanasd = import ./homes/atanasd.nix;
-	}
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.atanasd = import ./homes/atanasd.nix;
+        }
       ];
     };
   };

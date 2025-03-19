@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "24.11";
+  system.stateVersion = "unstable";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
@@ -34,14 +34,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  };
-
-  services.postgresql = {
-    enable = true;
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-    '';
   };
 
   time.timeZone = "Europe/Sofia";
@@ -78,6 +70,7 @@
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+    desktopManager.xterm.enable = false;
   };
 
   environment.gnome.excludePackages = (with pkgs; [
@@ -90,21 +83,35 @@
     gnome-characters
     gnome-music
     gnome-photos
-    gnome-terminal
     gnome-tour
+    gnome-terminal
+    gnome-console
     hitori # sudoku game
     iagno # go game
     tali # poker game
     totem # video player
+    xterm
   ]);
 
   programs.zsh.enable = true;
+  virtualisation.docker.enable = true;
   programs.wireshark.enable = true;
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    glfw
-    libGL
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      glfw
+      libGL
+    ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    gcc
+    cmake
+    gnumake
+    zip
+    unzip
+    bash
   ];
 
   users.users.atanasd = {
@@ -112,30 +119,20 @@
     description = "Atanas Dimitrov";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
+    packages = with pkgs; [
+      wpa_supplicant
+      just
+      tcl
+      typst
+      zathura
+      sbcl
+      wireshark
+      gparted
+      wine
+      ventoy
+      telegram-desktop
+      chromium
+      firefox
+    ];
   };
-
-  environment.systemPackages = with pkgs; [
-    gcc
-    cmake
-    gnumake
-    telegram-desktop
-    wpa_supplicant
-    just
-    chromium
-    zip
-    unzip
-    tcl
-    bash
-    typst
-    zathura
-    sbcl
-    wireshark
-    light
-    gparted
-    wine
-    ventoy
-    ghostty
-  ];
-
-  virtualisation.docker.enable = true;
 }
