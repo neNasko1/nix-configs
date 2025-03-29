@@ -53,5 +53,14 @@
     "org/gnome/shell" = {
       last-selected-power-profile = "performance";
     };
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 5;
+    };
+    "org/gnome/mutter" = {
+      workspaces-only-on-primary = false;
+    };
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
+    };
   };
 }

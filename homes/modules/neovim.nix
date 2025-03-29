@@ -47,7 +47,12 @@ in
             };
           };
           nil-ls.enable = true;
-          ccls.enable = true;
+          ccls = {
+            enable = true;
+            initOptions.clang = {
+              extraArgs = [ "-std=c++20" ];
+            };
+          };
           ocamllsp.enable = true;
         };
 
@@ -124,6 +129,9 @@ in
       autoindent = true;
       langmap = "чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM";
       foldlevel = 99;
+      tabstop = 4;
+      shiftwidth = 4;
+      expandtab = true;
     };
   };
 }

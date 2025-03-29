@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "unstable";
+  system.stateVersion = "24.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
@@ -102,6 +102,9 @@
     libraries = with pkgs; [
       glfw
       libGL
+      openssl
+      zlib
+      stdenv.cc.cc
     ];
   };
 
@@ -133,6 +136,13 @@
       telegram-desktop
       chromium
       firefox
+      spotify
+      unityhub
+      unoconv
+      qpdf
+      pdftk
+      ghostscript
+      bear
     ];
   };
 }
