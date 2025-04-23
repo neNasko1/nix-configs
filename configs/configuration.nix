@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "24.11";
+  system.stateVersion = "unstable";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
@@ -109,12 +109,14 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gcc
+    gcc14
     cmake
     gnumake
     zip
     unzip
     bash
+    cargo
+    rustc
   ];
 
   users.users.atanasd = {
@@ -126,8 +128,8 @@
       wpa_supplicant
       just
       tcl
-      typst
       zathura
+      typst
       sbcl
       wireshark
       gparted
@@ -143,6 +145,8 @@
       pdftk
       ghostscript
       bear
+      jq
+      texlive.combined.scheme-full
     ];
   };
 }

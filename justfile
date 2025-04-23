@@ -2,4 +2,4 @@ set shell := ["bash", "-uc"]
 
 rebuild-zenbook:
     echo "Rebuilding nixos and home-manager configurations"
-    bash nixos-rebuild switch --flake .#default --show-trace
+    bash nixos-rebuild switch --flake .#default --show-trace --upgrade
