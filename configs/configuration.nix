@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "unstable";
+  system.stateVersion = "25.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
@@ -26,7 +26,7 @@
   services.blueman.enable = true;
   # hardware.bluetooth.settings = { General = { ControllerMode = "bredr"; }; };
   services.printing.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -147,6 +147,9 @@
       bear
       jq
       texlive.combined.scheme-full
+      pandoc
+      anki
+      ghostty
     ];
   };
 }

@@ -46,13 +46,8 @@ in
               python.analysis.ignore = [ "*" ];
             };
           };
-          nil-ls.enable = true;
-          ccls = {
-            enable = true;
-            initOptions.clang = {
-              extraArgs = [ "-std=c++20" ];
-            };
-          };
+          nil_ls.enable = true;
+          clangd.enable = true;
           ocamllsp.enable = true;
         };
 

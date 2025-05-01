@@ -38,15 +38,11 @@
     git
     ripgrep
 
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "DroidSansMono"
-        "JetBrainsMono"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.jetbrains-mono
 
-    (buildFHSUserEnv {
+    (buildFHSEnv {
       name = "pixi";
       runScript = "pixi";
       targetPkgs = pkgs: with pkgs; [ pixi ];
@@ -63,8 +59,6 @@
     ocamlPackages.odoc
     ocamlPackages.ocaml-lsp
     ocamlformat
-
-    inputs.ghostty.packages."${pkgs.system}".default
   ];
 
   programs.home-manager.enable = true;
