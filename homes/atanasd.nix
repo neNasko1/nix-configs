@@ -8,6 +8,7 @@
     ./modules/neovim.nix
     ./modules/zsh.nix
     ./modules/dconf.nix
+    ./modules/newsboat.nix
   ];
 
   home.username = "atanasd";
@@ -59,6 +60,8 @@
     ocamlPackages.odoc
     ocamlPackages.ocaml-lsp
     ocamlformat
+    vale
+    vale-ls
   ];
 
   programs.home-manager.enable = true;

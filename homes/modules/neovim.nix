@@ -1,6 +1,10 @@
 { lib, config, pkgs, inputs, ... }:
 
 let
+  harperUserDict = [
+    "Atanas"
+    "Dimitrov"
+  ];
   vi_action = action: "<CMD>${action}<CR>";
   lua_action = action: "<CMD>lua ${action}<CR>";
   default_km_opts = {
@@ -13,6 +17,8 @@ in
     inputs.nixvim.homeManagerModules.nixvim
   ];
 
+  home.file.".config/harper-ls/user.dict".text = lib.concatStringsSep "\n" harperUserDict;
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -24,6 +30,10 @@ in
     globals.maplocalleader = " ";
 
     plugins = {
+      lean = {
+        enable = true;
+      };
+
       treesitter = {
         enable = true;
         settings = {
@@ -46,9 +56,46 @@ in
               python.analysis.ignore = [ "*" ];
             };
           };
-          nil_ls.enable = true;
+          nil_ls = {
+            enable = true;
+            settings.nix.flake.autoArchive = true;
+          };
           clangd.enable = true;
           ocamllsp.enable = true;
+
+          harper_ls = {
+            enable = true;
+            settings = {
+              "harper-ls" = {
+                userDictPath = "${config.home.homeDirectory}/.config/harper-ls/user.dict";
+                workspaceDictPath = "";
+                fileDictPath = "";
+                linters = {
+                  SpellCheck = true;
+                  SpelledNumbers = false;
+                  AnA = true;
+                  SentenceCapitalization = true;
+                  UnclosedQuotes = true;
+                  WrongQuotes = false;
+                  LongSentences = true;
+                  RepeatedWords = true;
+                  Spaces = true;
+                  Matcher = true;
+                  CorrectNumberSuffix = true;
+                };
+                codeActions = {
+                  ForceStable = false;
+                };
+                markdown = {
+                  IgnoreLinkTitle = false;
+                };
+                diagnosticSeverity = "hint";
+                isolateEnglish = false;
+                dialect = "American";
+                maxFileLength = 120000;
+              };
+            };
+          };
         };
 
         keymaps = {
@@ -99,6 +146,11 @@ in
         options = default_km_opts;
       }
       {
+        key = "<SPACE>lf";
+        action = lua_action "vim.lsp.buf.code_action()";
+        options = default_km_opts;
+      }
+      {
         key = "<SPACE>tf"; # telescope-file
         action = vi_action "Telescope git_files";
         options = default_km_opts;
@@ -111,7 +163,13 @@ in
     ];
 
     performance = {
-      byteCompileLua.enable = true;
+      byteCompileLua = {
+        enable = true;
+        initLua = true;
+        configs = true;
+        plugins = true;
+        nvimRuntime = true;
+      };
       combinePlugins.enable = true;
     };
 

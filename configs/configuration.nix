@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
@@ -105,6 +105,9 @@
       openssl
       zlib
       stdenv.cc.cc
+      libffi
+      libtinfo
+      libxml2
     ];
   };
 
@@ -117,6 +120,7 @@
     bash
     cargo
     rustc
+    tmux
   ];
 
   users.users.atanasd = {
@@ -130,16 +134,15 @@
       tcl
       zathura
       typst
+      lean4
       sbcl
       wireshark
       gparted
       wine
-      ventoy
       telegram-desktop
       chromium
       firefox
       spotify
-      unityhub
       unoconv
       qpdf
       pdftk
@@ -148,8 +151,26 @@
       jq
       texlive.combined.scheme-full
       pandoc
-      anki
       ghostty
+      hyperfine
+      (aspellWithDicts
+        (dicts: with dicts; [ en en-computers en-science ]))
+      llvmPackages.llvm
+      llvmPackages.llvm.dev
+      llvmPackages.libllvm
+      llvmPackages.clang
+      llvmPackages.lld
+      llvmPackages.clang-tools
+      ninja
+      openssl
+      openssl.dev
+      pkg-config
+      protobuf
+      steam
+      gthumb
+      openconnect
+      ffmpeg
+      yt-dlp
     ];
   };
 }
