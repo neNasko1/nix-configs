@@ -62,5 +62,9 @@
     "org/gnome/shell/app-switcher" = {
       current-workspace-only = true;
     };
+    "org/gnome/system/proxy" = {
+      mode = "auto";
+      autoconfig-url = "some-proxy-configuration";
+    };
   };
 }

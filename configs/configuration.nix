@@ -130,6 +130,7 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       wpa_supplicant
+      mosh
       just
       tcl
       zathura
@@ -171,6 +172,7 @@
       openconnect
       ffmpeg
       yt-dlp
+      poppler-utils
     ];
   };
 }

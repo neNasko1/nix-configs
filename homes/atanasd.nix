@@ -6,6 +6,7 @@
     ./modules/waybar.nix
     ./modules/git.nix
     ./modules/neovim.nix
+    ./modules/tmux.nix
     ./modules/zsh.nix
     ./modules/dconf.nix
     ./modules/newsboat.nix
