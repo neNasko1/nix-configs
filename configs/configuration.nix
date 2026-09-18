@@ -74,10 +74,11 @@
 
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     desktopManager.xterm.enable = false;
   };
+
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   environment.gnome.excludePackages = (with pkgs; [
     atomix # puzzle game
@@ -88,7 +89,6 @@
     gedit # text editor
     gnome-characters
     gnome-music
-    gnome-photos
     gnome-tour
     gnome-terminal
     gnome-console

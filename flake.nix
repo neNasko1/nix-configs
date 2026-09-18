@@ -18,6 +18,8 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+    packages.x86_64-linux.home-manager = inputs.home-manager.packages.x86_64-linux.home-manager;
+
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -33,15 +35,24 @@
       ];
     };
 
-    homeConfigurations.atanasd =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
+    homeConfigurations = {
+      atanasd = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
         extraSpecialArgs = { inherit inputs; };
-
-        modules = [
-          ./homes/atanasd.nix
-        ];
+        modules = [ ./homes/atanasd.nix ];
       };
+
+      adimitrov = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ ./homes/adimitrov.nix ];
+      };
+    };
   };
 }

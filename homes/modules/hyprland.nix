@@ -61,4 +61,10 @@ in
         );
     };
   };
+
+  programs.zsh.profileExtra = lib.mkIf config.wayland.windowManager.hyprland.enable ''
+    if [ -z "$DESKTOP_SESSION" ] && [[ "$XDG_SESSION_TYPE" == "tty" ]]; then
+        exec Hyprland
+    fi
+  '';
 }
