@@ -41,7 +41,7 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
-      command = "ghostty";
+      command = "alacritty";
       name = "Open terminal";
     };
     "org/gnome/settings-daemon/plugins/power" = {

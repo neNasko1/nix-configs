@@ -23,6 +23,11 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   services.blueman.enable = true;
   # hardware.bluetooth.settings = { General = { ControllerMode = "bredr"; }; };
   services.printing.enable = true;
@@ -65,6 +70,7 @@
   #   '';
   #   wantedBy = [ "multi-user.target" ];
   # };
+  programs.steam.enable = true;
 
   services.xserver = {
     enable = true;
@@ -102,12 +108,21 @@
     libraries = with pkgs; [
       glfw
       libGL
+      libGLU
       openssl
       zlib
       stdenv.cc.cc
       libffi
       libtinfo
       libxml2
+      xorg.libX11
+      xorg.libXext
+      xorg.libXrandr
+      xorg.libXinerama
+      xorg.libXcursor
+      xorg.libXi
+      xorg.libXxf86vm
+      openal
     ];
   };
 
@@ -167,12 +182,14 @@
       openssl.dev
       pkg-config
       protobuf
-      steam
       gthumb
       openconnect
       ffmpeg
       yt-dlp
       poppler-utils
+      wine
+      steam
+      lazygit
     ];
   };
 }

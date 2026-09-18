@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -32,5 +32,16 @@
         }
       ];
     };
+
+    homeConfigurations.atanasd =
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+        extraSpecialArgs = { inherit inputs; };
+
+        modules = [
+          ./homes/atanasd.nix
+        ];
+      };
   };
 }
